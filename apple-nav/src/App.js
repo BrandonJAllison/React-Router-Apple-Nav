@@ -1,12 +1,28 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
 
+import React, { Component } from "react";
+import { Route, Link } from "react-router-dom";
+import "./App.css";
+import MainNav from "./MainNAv";
+import SubNav from "./SubNav";
+import DummyData from "./data";
 class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      data: DummyData
+    };
+  }
   render() {
     return (
       <div className="App">
-        
+        <Route
+          path="/"
+          render={props => <MainNav {...props} data={this.state.data} />}
+        />
+        <Route
+          path="/:itemName"
+          render={props => <SubNav {...props} data={this.state.data} />}
+        />
       </div>
     );
   }
